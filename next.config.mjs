@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export", // Enable static export
+  basePath: "", // Leave empty for username.github.io
+  assetPrefix: "", // Leave empty for username.github.io
   images: {
     unoptimized: true, // Required for static export
     remotePatterns: [
