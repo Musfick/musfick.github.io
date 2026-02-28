@@ -1,6 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  output: "export", // Enable static export
+  images: {
+    unoptimized: true, // Required for static export
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "heroui-assets.nyc3.cdn.digitaloceanspaces.com",
+      },
+      // Add other domains as needed
+      {
+        protocol: "https",
+        hostname: "*.digitaloceanspaces.com",
+      },
+    ],
+  },
+  trailingSlash: true, // Important for GitHub Pages
 };
 
 export default nextConfig;
