@@ -9,12 +9,12 @@ import {
 } from "@gravity-ui/icons";
 import StoreButton from "./store_button";
 
-const Experience = ({ item, isLast }) => {
+const Experience = ({ item }) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
-  const hasMoreThanThree = item.projects.length > 3;
+  const hasMoreThanThree = item.projects.length > 2;
   const displayedProjects = isExpanded
     ? item.projects
-    : item.projects.slice(0, 3);
+    : item.projects.slice(0, 2);
 
   return (
     <>
@@ -46,7 +46,7 @@ const Experience = ({ item, isLast }) => {
         <div className="flex justify-center my-4">
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="flex items-center w-fit justify-center gap-2 pt-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+            className="flex items-center w-fit justify-center gap-2 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
           >
             {isExpanded ? (
               <>
@@ -55,14 +55,14 @@ const Experience = ({ item, isLast }) => {
               </>
             ) : (
               <>
-                Show {item.projects.length - 3} more projects
+                Show {item.projects.length - 2} more projects
                 <ChevronDown className="w-4 h-4" />
               </>
             )}
           </button>
         </div>
       )}
-      {!isLast ? <hr className="border-gray-200" /> : <></>}
+      <hr className="border-gray-200" />
     </>
   );
 };
