@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Musfick Jamil",
   description:
-    "Mobile developer based in Dhaka, building Android and iOS apps with Kotlin, Swift, and Flutter.",
+    "Mobile application developer based in Dhaka, building apps with Kotlin, Swift, and Flutter.",
   keywords: [
     "Musfick Jamil",
     "Android Developer",
@@ -30,7 +30,7 @@ export const metadata = {
   openGraph: {
     title: "Musfick Jamil",
     description:
-      "Mobile developer based in Dhaka, building Android and iOS apps with Kotlin, Swift, and Flutter.",
+      "Mobile application developer based in Dhaka, building apps with Kotlin, Swift, and Flutter.",
     type: "website",
   },
 };
