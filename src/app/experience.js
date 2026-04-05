@@ -81,7 +81,7 @@ const Project = ({ item }) => {
       <div className="flex flex-1 flex-col gap-3">
         <Card.Header className="gap-1">
           <Card.Title className="pr-8 text-lg">{item.title}</Card.Title>
-          <Card.Description>{item.description}</Card.Description>
+          <Card.Description className="text-gray-500 leading-relaxed">{item.description}</Card.Description>
         </Card.Header>
         <Card.Footer className="mt-auto flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-row gap-2.5">

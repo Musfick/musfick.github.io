@@ -7,9 +7,18 @@ import {
   CodeFork,
   LocationArrow,
   Envelope,
+  CircleFill,
+  Xmark,
 } from "@gravity-ui/icons";
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
 import ProfileImage from "./profile_image";
 import noappimage from "../app/no_app.jpg";
+import csgo from "../app/csgo.jpg";
+import att from "../app/att.jpg";
+import sft from "../app/sft.jpg";
+import bike from "../app/bike.jpeg";
 import * as React from "react";
 import { useState } from "react";
 import Experience from "./experience";
@@ -18,7 +27,7 @@ const Home = () => {
   return (
     <div className="flex flex-col mx-auto max-w-3xl gap-20 my-24">
       <div className="flex flex-col gap-8">
-        <ProfileImage src="https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg" />
+        <ProfileImage src="https://avatars.githubusercontent.com/u/43013838?v=4" />
         <div>
           <h1 className="font-semibold text-2xl">Hey, I'm Musfick Jamil.</h1>
           <h1 className="font-semibold text-2xl">
@@ -70,24 +79,10 @@ const Home = () => {
       </div>
       <div className="flex flex-col gap-8">
         <h1 className="text-xl font-semibold">Education</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {educations.map((e) => {
           return <Education key={e.title} item={e} />;
         })}
-      </div>
-      <div className="flex flex-col gap-8">
-        <h1 className="text-xl font-semibold">Desk Setup</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {deskSetup.map((item) => {
-            return <DeskSetupCard key={item.name} item={item} />;
-          })}
-        </div>
-      </div>
-      <div className="flex flex-col gap-8">
-        <h1 className="text-xl font-semibold">Beyond Coding</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {hobbies.map((hobby) => {
-            return <HobbyCard key={hobby.title} hobby={hobby} />;
-          })}
         </div>
       </div>
       <div className="flex flex-col gap-8">
@@ -95,6 +90,14 @@ const Home = () => {
         <div className="flex flex-col gap-4">
           {openSourceProjects.map((project) => {
             return <OpenSourceCard key={project.name} project={project} />;
+          })}
+        </div>
+      </div>
+      <div className="flex flex-col gap-8">
+        <h1 className="text-xl font-semibold">Beyond Coding</h1>
+        <div className="grid grid-cols-12 gap-4">
+          {hobbies.map((hobby) => {
+            return <HobbyCard key={hobby.title} hobby={hobby} />;
           })}
         </div>
       </div>
@@ -109,34 +112,17 @@ const Home = () => {
 export default Home;
 
 const Education = ({ item }) => {
-  return (
-    <div className="flex flex-row place-items-center gap-5">
-      <div className="w-12 h-12 rounded-xl bg-gradient-to-br bg-white flex items-center justify-center">
-        <GraduationCap className="h-6 w-6" />
-      </div>
-      <div className="flex-1">
-        <h3 className="text-lg font-medium">{item.title}</h3>
-        <div className="flex flex-wrap items-center gap-2 text-sm">
-          <span className="text-gray-600">{item.subtitle}</span>
-          <span className="text-gray-300">•</span>
-          <span className=" text-gray-600">{item.body}</span>
-        </div>
-      </div>
-    </div>
-  );
-};
 
-const DeskSetupCard = ({ item }) => {
-  const IconComponent = item.icon;
   return (
-    <Card className="p-4 bg-white/5 border border-white/10">
-      <div className="flex flex-row items-center gap-4">
-        <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center">
-          <IconComponent className="h-6 w-6 text-gray-800" />
+    <Card className="p-5">
+      <div className="flex flex-col gap-3">
+        <div className="w-12 h-12 rounded-xl bg-black flex items-center justify-center">
+          <GraduationCap className="h-6 w-6 text-white" />
         </div>
-        <div className="flex-1">
-          <h3 className="text-sm font-medium text-gray-400">{item.category}</h3>
-          <p className="text-base font-semibold">{item.name}</p>
+        <div>
+          <h3 className="text-lg font-semibold">{item.title}</h3>
+          <p className="text-sm text-gray-500 leading-relaxed mt-1 mb-2">{item.subtitle}</p>
+          <Chip className="bg-black/4">{item.body}</Chip>
         </div>
       </div>
     </Card>
@@ -144,38 +130,84 @@ const DeskSetupCard = ({ item }) => {
 };
 
 const HobbyCard = ({ hobby }) => {
-  const IconComponent = hobby.icon;
+  const eyebrow = hobby.tags?.[0] ?? "Interest";
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <Card className="p-5 bg-white/5 border border-white/10">
-      <div className="flex flex-col gap-3">
-        <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center">
-          <IconComponent className="h-6 w-6 text-gray-800" />
-        </div>
-        <div>
-          <h3 className="text-lg font-semibold">{hobby.title}</h3>
-          <p className="text-sm text-gray-400 mt-1">{hobby.description}</p>
-        </div>
-        {hobby.tags && (
-          <div className="flex flex-wrap gap-2 mt-2">
-            {hobby.tags.map((tag) => (
-              <Chip key={tag} size="sm" className="bg-white/10">
-                {tag}
-              </Chip>
-            ))}
-          </div>
-        )}
-      </div>
+    <Card className="relative col-span-12 flex min-h-[300px] flex-col overflow-hidden rounded-3xl sm:col-span-6">
+      <img
+        alt={hobby.title}
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        src={hobby.image}
+      />
+      <button
+        type="button"
+        aria-label={`View ${hobby.title} image larger`}
+        className="absolute inset-0 z-[1] cursor-pointer border-0 bg-transparent p-0"
+        onClick={() => setIsOpen(true)}
+      />
+      <div
+        className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-black/40 via-black/15 to-black/30"
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[25%] border-t border-white/15 bg-gradient-to-t from-black/88 via-black/48 to-transparent shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] backdrop-blur-2xl backdrop-saturate-125"
+        aria-hidden
+      />
+      <Card.Header className="relative z-10">
+        <Card.Title className="text-xs font-semibold uppercase tracking-wide text-white/90">
+          {eyebrow}
+        </Card.Title>
+        <Card.Description className="text-sm font-medium leading-5 text-white/75">
+          {hobby.title}
+        </Card.Description>
+      </Card.Header>
+      <Card.Footer className="relative z-10 mt-auto">
+        <p className="line-clamp-2 text-sm font-normal text-white leading-relaxed">
+          {hobby.description}
+        </p>
+      </Card.Footer>
+      <Lightbox
+        plugins={[Zoom]}
+        open={isOpen}
+        close={() => setIsOpen(false)}
+        slides={[{ src: hobby.image, alt: hobby.title }]}
+        index={0}
+        carousel={{ finite: true }}
+        zoom={{
+          maxZoomPixelRatio: 3,
+          scrollToZoom: true,
+        }}
+        styles={{
+          container: { backgroundColor: "rgba(0, 0, 0, 0.5)" },
+        }}
+        controller={{ closeOnPullDown: false, closeOnBackdropClick: true }}
+        render={{
+          buttonPrev: () => null,
+          buttonNext: () => null,
+          iconZoomOut: () => null,
+          iconZoomIn: () => null,
+          buttonClose: () => (
+            <Button
+              isIconOnly
+              variant="tertiary"
+              key="hobby-lightbox-close"
+              onClick={() => setIsOpen(false)}
+            >
+              <Xmark />
+            </Button>
+          ),
+        }}
+      />
     </Card>
   );
 };
 
 const OpenSourceCard = ({ project }) => {
   return (
-    <Card className="p-5 bg-white/5 border border-white/10">
+    <Card className="p-5">
       <div className="flex flex-col gap-3">
         <div className="flex flex-row items-start justify-between">
           <div className="flex flex-row items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-lg bg-black flex items-center justify-center">
               <span className="text-white font-bold text-sm">
                 {project.name.charAt(0)}
               </span>
@@ -185,7 +217,7 @@ const OpenSourceCard = ({ project }) => {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lg font-semibold hover:text-purple-400 transition-colors"
+                className="text-lg font-semibold transition-colors"
               >
                 {project.name}
               </Link>
@@ -203,7 +235,7 @@ const OpenSourceCard = ({ project }) => {
             </div>
           </div>
         </div>
-        <p className="text-sm text-gray-300 leading-relaxed">
+        <p className="text-sm text-gray-500 leading-relaxed">
           {project.description}
         </p>
         <div className="flex flex-wrap gap-2 mt-1">
@@ -240,7 +272,7 @@ const ContactSection = () => {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "YOUR_ACCESS_KEY_HERE",
+          access_key: "4bd5f104-bd89-434b-aec0-fd88f0b11f75",
           name: formData.name,
           email: formData.email,
           message: formData.message,
@@ -270,13 +302,12 @@ const ContactSection = () => {
   };
 
   return (
-    <Card className="p-6 bg-white/5 border border-white/10">
+    <Card className="p-6">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <p className="text-gray-300">
-            I'm currently open for new opportunities and interesting projects.
-            Whether you have a question or just want to say hi, I'll do my best
-            to get back to you!
+          <p className="text-gray-500 leading-relaxed">
+          I’m currently focused on my ongoing work, but I’ll consider interesting opportunities.
+          Feel free to reach out if you have a question or just want to say hi!
           </p>
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -287,7 +318,7 @@ const ContactSection = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="bg-white/5 border-white/10"
+              className="bg-gray-100 shadow-none"
             />
             <Input
               name="email"
@@ -296,7 +327,7 @@ const ContactSection = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="bg-white/5 border-white/10"
+              className="bg-gray-100 shadow-none"
             />
           </div>
           <TextArea
@@ -305,12 +336,13 @@ const ContactSection = () => {
             value={formData.message}
             onChange={handleChange}
             required
-            className="bg-white/5 border-white/10"
+              className="bg-gray-100 shadow-none"
           />
+          <div className="mt-1"></div>
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full sm:w-auto bg-white text-black font-medium hover:bg-gray-100"
+            className="bg-black text-white"
           >
             {isSubmitting ? (
               "Sending..."
@@ -323,12 +355,12 @@ const ContactSection = () => {
           </Button>
         </form>
         {submitStatus === "success" && (
-          <p className="text-green-400 text-sm">
+          <p className="text-sm">
             Message sent successfully! I'll get back to you soon.
           </p>
         )}
         {submitStatus === "error" && (
-          <p className="text-red-400 text-sm">
+          <p className="text-sm">
             Something went wrong. Please try again or email me directly.
           </p>
         )}
@@ -338,7 +370,7 @@ const ContactSection = () => {
             href="mailto:musfick@example.com"
             className="text-gray-400 hover:text-white transition-colors"
           >
-            musfick@example.com
+            musfick.jamil.1@gmail.com
           </Link>
         </div>
       </div>
@@ -364,105 +396,73 @@ const educations = [
   },
 ];
 
-const deskSetup = [
-  {
-    category: "Processor",
-    name: "AMD Ryzen 9 5900X",
-    icon: Bulb,
-  },
-  {
-    category: "Memory",
-    name: "32GB DDR4 3200MHz",
-    icon: Bulb,
-  },
-  {
-    category: "Primary Monitor",
-    name: '27" LG UltraGear QHD 165Hz',
-    icon: Bulb,
-  },
-  {
-    category: "Secondary Monitor",
-    name: '24" Dell S2421H FHD IPS',
-    icon: Bulb,
-  },
-  {
-    category: "Keyboard",
-    name: "Keychron K2 Mechanical",
-    icon: Bulb,
-  },
-  {
-    category: "Mouse",
-    name: "Logitech MX Master 3S",
-    icon: Bulb,
-  },
-  {
-    category: "Desk Lighting",
-    name: "Baseus Monitor Light Bar",
-    icon: Bulb,
-  },
-];
-
 const hobbies = [
   {
-    title: "CS:GO",
+    title: "Desk Setup",
     description:
-      "Competitive FPS gaming. Global Elite rank with 2,000+ hours played.",
-    icon: Bulb,
-    tags: ["FPS", "Competitive", "Steam"],
-  },
-  {
-    title: "Valorant",
-    description:
-      "Tactical shooter enthusiast. Ascendant rank, team player focused.",
-    icon: Bulb,
-    tags: ["Tactical", "Riot Games", "Ranked"],
+      "My desk setup is for both work and fun, helping me stay productive and relax.",
+    image:
+      "https://raw.githubusercontent.com/Musfick/Musfick/master/my_personal_work_space.jpeg",
+    tags: ["PC"],
   },
   {
     title: "Bike Touring",
     description:
-      "Weekend rides exploring Bangladesh. Longest trip: Dhaka to Sylhet.",
-    icon: Bulb,
-    tags: ["Adventure", "Weekend Rides", "Touring"],
+      "I love bike touring and have explored mountains, rivers, and beaches across Bangladesh.",
+    image:
+    bike.src,
+    tags: ["Adventure"],
   },
   {
-    title: "Gaming Setup",
+    title: "PC Gaming",
     description:
-      "Building and optimizing the perfect battlestation for work and play.",
-    icon: Bulb,
-    tags: ["Hardware", "Peripherals", "Setup"],
-  },
+      "I love to play games and have played games for a long time.",
+    image:
+    csgo.src,
+    tags: ["Gaming"],
+  }
 ];
 
 const openSourceProjects = [
   {
-    name: "kotlin-mvvm-boilerplate",
+    name: "preron",
     description:
-      "Production-ready Android MVVM boilerplate with Clean Architecture, Hilt DI, Room, and Retrofit. Used by 500+ developers.",
-    language: "Kotlin",
-    stars: 342,
-    forks: 89,
-    url: "https://github.com/musfick/kotlin-mvvm-boilerplate",
-    tags: ["Android", "MVVM", "Clean Architecture", "Hilt"],
-  },
-  {
-    name: "flutter-custom-widgets",
-    description:
-      "A collection of reusable, animated Flutter widgets for faster UI development. Includes custom charts, loaders, and transitions.",
+      "An Android app that allows bKash cash out, send money, and balance check offline using a USSD dialer with Accessibility Service. It is currently in development for Android.",
     language: "Dart",
-    stars: 186,
-    forks: 45,
-    url: "https://github.com/musfick/flutter-custom-widgets",
-    tags: ["Flutter", "UI", "Animations", "Dart"],
+    stars: 0,
+    forks: 0,
+    url: "https://github.com/Musfick/preron",
+    tags: ["Flutter", "Accessibility Service", "Dart"],
   },
   {
-    name: "swiftui-components",
+    name: "AlbumFetcher",
     description:
-      "Modern SwiftUI component library with dark mode support, accessibility features, and iOS 15+ compatibility.",
-    language: "Swift",
-    stars: 128,
-    forks: 32,
-    url: "https://github.com/musfick/swiftui-components",
-    tags: ["SwiftUI", "iOS", "Components", "Apple"],
+      "An Android app consuming a https://jsonplaceholder.typicode.com API to display album list. it has been built with Kotlin, Jetpack Compose, Repository Pattern and MVVM pattern as well as Architecture Components. Also uses unitTest and instrumentation testing.",
+    language: "Kotlin",
+    stars: 0,
+    forks: 0,
+    url: "https://github.com/Musfick/AlbumFetcher",
+    tags: ["Jetpack Compose", "Retrofit", "Coroutines", "Hilt", "JUnit", "Compose UI Testing", "Turbine", "Mockwebserver", "Code coverage"],
+  },
+  {
+    name: "AgentX",
+    description:
+      "An Android & iOS app consuming a (https://valorant-api.com/) API to display agent list. it has been built with Kotlin Multiplatform Mobile.",
+    language: "Kotlin & Swift",
+    stars: 64,
+    forks: 5,
+    url: "https://github.com/Musfick/AgentX",
+    tags: ["KMM", "Jetpack Compose", "SwiftUI", "Ktor", "SQLDelight", "Coil"],
+  },
+  {
+    name: "retrofit-kotlin-upload-progress",
+    description:
+      "This library allows you to get upload progress from Retrofit Request Body.",
+    language: "Kotlin",
+    stars: 38,
+    forks: 5,
+    url: "https://github.com/Musfick/retrofit-kotlin-upload-progress",
+    tags: ["Kotlin", "Retrofit", "Library"],
   },
 ];
 
@@ -566,7 +566,7 @@ const experiences = [
           "https://apps.apple.com/us/app/track-my-vehicle-lite/id1663701040",
       },
       {
-        logo: "https://play-lh.googleusercontent.com/MZcK2L4GH1FtMbdwoEku-oo-NULI7jEiHMQSVqiv5ZisactqQ2SU-8INBtutJmlR5Sw=w240-h480-rw",
+        logo: att.src,
         title: "Avengers - Task Tracker",
         description: (
           <>
@@ -579,7 +579,7 @@ const experiences = [
         appstore: null,
       },
       {
-        logo: "https://play-lh.googleusercontent.com/_2HHVhrMdIQg20v9TDZ9i8XpyIzd5HjiPWlLuGnhxT0bkypNIxGDUQ15srHiBSkL9iZDH9pU7v-pX7uirw8XGg=w240-h480-rw",
+        logo: sft.src,
         title: "Sales Force Tracker",
         description: (
           <>
