@@ -14,21 +14,23 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Musfick Jamil",
   description:
-    "Portfolio of Musfick Jamil, a specialized Mobile Application Developer building high-performance, user-centric mobile experiences.",
+    "Mobile application developer based in Dhaka, building apps with Kotlin, Swift, and Flutter.",
   keywords: [
-    "Mobile Developer",
-    "App Development",
     "Musfick Jamil",
-    "Portfolio",
-    "React Native",
-    "Flutter",
-    "Android",
-    "iOS",
+    "Android Developer",
+    "iOS Developer",
+    "Flutter Developer",
+    "Kotlin",
+    "SwiftUI",
+    "Jetpack Compose",
+    "Dhaka",
+    "Bangladesh",
   ],
   authors: [{ name: "Musfick Jamil" }],
   openGraph: {
-    title: "Musfick Jamil | Mobile Application Developer",
-    description: "Explore the mobile projects and expertise of Musfick Jamil.",
+    title: "Musfick Jamil",
+    description:
+      "Mobile application developer based in Dhaka, building apps with Kotlin, Swift, and Flutter.",
     type: "website",
   },
 };
