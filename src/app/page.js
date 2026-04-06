@@ -79,7 +79,7 @@ const Home = () => {
       </div>
       <div className="flex flex-col gap-8">
         <h1 className="text-xl font-semibold">Open Source</h1>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-8">
           {openSourceProjects.map((project) => {
             return <OpenSourceCard key={project.name} project={project} />;
           })}
@@ -87,7 +87,7 @@ const Home = () => {
       </div>
       <div className="flex flex-col gap-8">
         <h1 className="text-xl font-semibold">Education</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         {educations.map((e) => {
           return <Education key={e.title} item={e} />;
         })}
@@ -95,7 +95,7 @@ const Home = () => {
       </div>
       <div className="flex flex-col gap-8">
         <h1 className="text-xl font-semibold">Beyond Coding</h1>
-        <div className="grid grid-cols-12 gap-4">
+        <div className="grid grid-cols-12 gap-8">
           {hobbies.map((hobby) => {
             return <HobbyCard key={hobby.title} hobby={hobby} />;
           })}
