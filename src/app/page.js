@@ -391,7 +391,7 @@ const educations = [
   },
   {
     title: "Government Laboratory High School, Mymensingh",
-    subtitle: "Secondary School Certificat",
+    subtitle: "Secondary School Certificate",
     body: "2012 - 2014",
   },
 ];
