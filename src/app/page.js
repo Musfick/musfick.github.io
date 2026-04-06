@@ -78,19 +78,19 @@ const Home = () => {
         })}
       </div>
       <div className="flex flex-col gap-8">
-        <h1 className="text-xl font-semibold">Education</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {educations.map((e) => {
-          return <Education key={e.title} item={e} />;
-        })}
-        </div>
-      </div>
-      <div className="flex flex-col gap-8">
         <h1 className="text-xl font-semibold">Open Source</h1>
         <div className="flex flex-col gap-4">
           {openSourceProjects.map((project) => {
             return <OpenSourceCard key={project.name} project={project} />;
           })}
+        </div>
+      </div>
+      <div className="flex flex-col gap-8">
+        <h1 className="text-xl font-semibold">Education</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {educations.map((e) => {
+          return <Education key={e.title} item={e} />;
+        })}
         </div>
       </div>
       <div className="flex flex-col gap-8">
