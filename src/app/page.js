@@ -25,25 +25,27 @@ import Experience from "./experience";
 
 const Home = () => {
   return (
-    <div className="flex flex-col mx-auto max-w-3xl gap-12 sm:gap-16 md:gap-20 my-8 sm:my-16 md:my-24 px-4 sm:px-6 md:px-8">
+    <div className="mx-auto flex min-w-0 w-full max-w-3xl flex-col gap-12 px-4 py-12 sm:gap-16 sm:px-6 sm:py-16 md:gap-20 md:py-24">
       <div className="flex flex-col gap-6 sm:gap-8">
         <ProfileImage src="https://avatars.githubusercontent.com/u/43013838?v=4" />
         <div>
-          <h1 className="font-semibold text-xl sm:text-2xl">Hey, I'm Musfick Jamil.</h1>
-          <h1 className="font-semibold text-xl sm:text-2xl">
+          <h1 className="text-xl font-semibold sm:text-2xl">
+            Hey, I'm Musfick Jamil.
+          </h1>
+          <h1 className="text-xl font-semibold sm:text-2xl">
             Mobile Application Developer (Android & iOS)
           </h1>
-          <h1 className="font-semibold text-xl sm:text-2xl">
+          <h1 className="text-xl font-semibold sm:text-2xl">
             based in Dhaka, Bangladesh.
           </h1>
         </div>
-        <p className="text-sm sm:text-base">
+        <p className="text-[15px] leading-relaxed sm:text-base">
           I build mobile apps for iOS and Android using Kotlin, Swift, and
           Flutter. I focus on writing clean code and creating reliable solutions
           that people actually use every day.
         </p>
 
-        <div className="flex flex-row flex-wrap items-center gap-4 sm:gap-6">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 sm:gap-x-6">
           {links.map((e) => {
             return (
               <Link
@@ -60,11 +62,11 @@ const Home = () => {
         </div>
       </div>
       <div className="flex flex-col gap-6 sm:gap-8">
-        <h1 className="text-lg sm:text-xl font-semibold">Skills</h1>
-        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+        <h1 className="text-lg font-semibold sm:text-xl">Skills</h1>
+        <div className="flex flex-wrap items-center gap-3">
           {skills.map((e) => {
             return (
-              <Chip className="bg-white" key={e} size="lg">
+              <Chip className="bg-white text-xs sm:text-sm" key={e} size="md">
                 {e}
               </Chip>
             );
@@ -72,13 +74,13 @@ const Home = () => {
         </div>
       </div>
       <div className="flex flex-col gap-6 sm:gap-8">
-        <h1 className="text-lg sm:text-xl font-semibold">Experience</h1>
+        <h1 className="text-lg font-semibold sm:text-xl">Experience</h1>
         {experiences.map((e) => {
           return <Experience item={e} key={e.company_name} />;
         })}
       </div>
       <div className="flex flex-col gap-6 sm:gap-8">
-        <h1 className="text-lg sm:text-xl font-semibold">Open Source</h1>
+        <h1 className="text-lg font-semibold sm:text-xl">Open Source</h1>
         <div className="flex flex-col gap-6 sm:gap-8">
           {openSourceProjects.map((project) => {
             return <OpenSourceCard key={project.name} project={project} />;
@@ -86,15 +88,15 @@ const Home = () => {
         </div>
       </div>
       <div className="flex flex-col gap-6 sm:gap-8">
-        <h1 className="text-lg sm:text-xl font-semibold">Education</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+        <h1 className="text-lg font-semibold sm:text-xl">Education</h1>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:gap-8">
         {educations.map((e) => {
           return <Education key={e.title} item={e} />;
         })}
         </div>
       </div>
       <div className="flex flex-col gap-6 sm:gap-8">
-        <h1 className="text-lg sm:text-xl font-semibold">Beyond Coding</h1>
+        <h1 className="text-lg font-semibold sm:text-xl">Beyond Coding</h1>
         <div className="grid grid-cols-12 gap-4 sm:gap-6 md:gap-8">
           {hobbies.map((hobby) => {
             return <HobbyCard key={hobby.title} hobby={hobby} />;
@@ -102,7 +104,7 @@ const Home = () => {
         </div>
       </div>
       <div className="flex flex-col gap-6 sm:gap-8">
-        <h1 className="text-lg sm:text-xl font-semibold">Get In Touch</h1>
+        <h1 className="text-lg font-semibold sm:text-xl">Get In Touch</h1>
         <ContactSection />
       </div>
     </div>
@@ -114,14 +116,18 @@ export default Home;
 const Education = ({ item }) => {
 
   return (
-    <Card className="p-4 sm:p-5">
-      <div className="flex flex-col gap-3">
-        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-black flex items-center justify-center">
-          <GraduationCap className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+    <Card className="min-w-0 p-4 sm:p-5">
+      <div className="flex min-w-0 flex-col gap-3">
+        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-black">
+          <GraduationCap className="h-6 w-6 text-white" />
         </div>
-        <div>
-          <h3 className="text-base sm:text-lg font-semibold">{item.title}</h3>
-          <p className="text-xs sm:text-sm text-gray-500 leading-relaxed mt-1 mb-2">{item.subtitle}</p>
+        <div className="min-w-0">
+          <h3 className="break-words text-base font-semibold sm:text-lg">
+            {item.title}
+          </h3>
+          <p className="mt-1 mb-2 text-sm leading-relaxed text-gray-500">
+            {item.subtitle}
+          </p>
           <Chip className="bg-black/4">{item.body}</Chip>
         </div>
       </div>
@@ -133,7 +139,7 @@ const HobbyCard = ({ hobby }) => {
   const eyebrow = hobby.tags?.[0] ?? "Interest";
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <Card className="relative col-span-12 flex min-h-[250px] sm:min-h-[300px] flex-col overflow-hidden rounded-2xl sm:rounded-3xl sm:col-span-6">
+    <Card className="relative col-span-12 flex min-h-[280px] min-w-0 flex-col overflow-hidden rounded-3xl sm:col-span-6 sm:min-h-[280px] md:min-h-[300px]">
       <img
         alt={hobby.title}
         className="pointer-events-none absolute inset-0 h-full w-full object-cover"
@@ -156,12 +162,12 @@ const HobbyCard = ({ hobby }) => {
         <Card.Title className="text-xs font-semibold uppercase tracking-wide text-white/90">
           {eyebrow}
         </Card.Title>
-        <Card.Description className="text-xs sm:text-sm font-medium leading-5 text-white/75">
+        <Card.Description className="text-sm font-medium leading-5 text-white/75">
           {hobby.title}
         </Card.Description>
       </Card.Header>
       <Card.Footer className="relative z-10 mt-auto">
-        <p className="line-clamp-2 text-xs sm:text-sm font-normal text-white leading-relaxed">
+        <p className="line-clamp-2 text-sm font-normal leading-relaxed text-white">
           {hobby.description}
         </p>
       </Card.Footer>
@@ -203,39 +209,39 @@ const HobbyCard = ({ hobby }) => {
 
 const OpenSourceCard = ({ project }) => {
   return (
-    <Card className="p-4 sm:p-5">
-      <div className="flex flex-col gap-3">
-        <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-0">
-          <div className="flex flex-row items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-black flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-bold text-sm">
+    <Card className="min-w-0 p-4 sm:p-5">
+      <div className="flex min-w-0 flex-col gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+          <div className="flex min-w-0 flex-1 flex-row items-center gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-black">
+              <span className="text-sm font-bold text-white">
                 {project.name.charAt(0)}
               </span>
             </div>
-            <div>
+            <div className="min-w-0">
               <Link
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-base sm:text-lg font-semibold transition-colors"
+                className="text-base font-semibold transition-colors sm:text-lg"
               >
                 {project.name}
               </Link>
-              <p className="text-xs sm:text-sm text-gray-400">{project.language}</p>
+              <p className="text-sm text-gray-400">{project.language}</p>
             </div>
           </div>
-          <div className="flex flex-row items-center gap-4 ml-13 sm:ml-0">
-            <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-400">
+          <div className="flex shrink-0 flex-row items-center gap-4 sm:pt-0.5">
+            <div className="flex items-center gap-1 text-sm text-gray-400">
               <Star className="h-4 w-4" />
               <span>{project.stars}</span>
             </div>
-            <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-400">
+            <div className="flex items-center gap-1 text-sm text-gray-400">
               <CodeFork className="h-4 w-4" />
               <span>{project.forks}</span>
             </div>
           </div>
         </div>
-        <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
+        <p className="text-[15px] leading-relaxed text-gray-500 sm:text-sm">
           {project.description}
         </p>
         <div className="flex flex-wrap gap-2 mt-1">
@@ -302,12 +308,13 @@ const ContactSection = () => {
   };
 
   return (
-    <Card className="p-4 sm:p-6">
-      <div className="flex flex-col gap-4 sm:gap-6">
+    <Card className="min-w-0 p-4 sm:p-6">
+      <div className="flex min-w-0 flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <p className="text-sm sm:text-base text-gray-500 leading-relaxed">
-          I'm currently focused on my ongoing work, but I'll consider interesting opportunities.
-          Feel free to reach out if you have a question or just want to say hi!
+          <p className="text-[15px] leading-relaxed text-gray-500 sm:text-base">
+            I’m currently focused on my ongoing work, but I’ll consider
+            interesting opportunities. Feel free to reach out if you have a
+            question or just want to say hi!
           </p>
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -342,7 +349,7 @@ const ContactSection = () => {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-black text-white w-full sm:w-auto"
+            className="w-full bg-black text-white sm:w-auto"
           >
             {isSubmitting ? (
               "Sending..."
@@ -355,20 +362,20 @@ const ContactSection = () => {
           </Button>
         </form>
         {submitStatus === "success" && (
-          <p className="text-xs sm:text-sm">
+          <p className="text-sm">
             Message sent successfully! I'll get back to you soon.
           </p>
         )}
         {submitStatus === "error" && (
-          <p className="text-xs sm:text-sm">
+          <p className="text-sm">
             Something went wrong. Please try again or email me directly.
           </p>
         )}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 pt-4 border-t border-white/10">
-          <Envelope className="h-5 w-5 text-gray-400" />
+        <div className="flex flex-wrap items-start gap-x-3 gap-y-1 border-t border-white/10 pt-4 sm:items-center sm:gap-4">
+          <Envelope className="mt-0.5 h-5 w-5 shrink-0 text-gray-400 sm:mt-0" />
           <Link
-            href="mailto:musfick@example.com"
-            className="text-sm sm:text-base text-gray-400 transition-colors break-all"
+            href="mailto:musfick.jamil.1@gmail.com"
+            className="min-w-0 flex-1 break-all text-gray-400 transition-colors sm:flex-none"
           >
             musfick.jamil.1@gmail.com
           </Link>
@@ -477,7 +484,7 @@ const experiences = [
         title: "Track My Vehicle",
         description: (
           <>
-            GPS tracking app for Android
+            GPS tracking & fleet management app for Android
             <strong> (Kotlin/Compose)</strong> and iOS
             <strong> (SwiftUI)</strong> with offline support, MVVM, Google Maps,
             push notifications, and payments.
@@ -525,7 +532,8 @@ const experiences = [
         description: (
           <>
             The app is designed to enhance your purchasing experience by
-            providing a way to earn and redeem rewards. The application is built with
+            providing a unique way to earn and redeem rewards. This is a cross
+            platform application built with
             <strong> Flutter.</strong>
           </>
         ),
@@ -603,7 +611,7 @@ const experiences = [
         title: "Advisofast",
         description: (
           <>
-            A app with video/audio consultation. Built with{" "}
+            A telemedicine app with video/audio consultation. Built with{" "}
             <strong>Kotlin (Android)</strong> and <strong>Flutter (iOS)</strong>
             , featuring real-time communication via <strong>Agora SDK</strong>{" "}
             and <strong>Stripe</strong> payment integration.

@@ -11,6 +11,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata = {
   title: "Musfick Jamil",
   description:
@@ -39,9 +44,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`font-sans ${geistSans.variable} ${geistMono.variable} antialiased bg-background`}
+        className={`font-sans ${geistSans.variable} ${geistMono.variable} min-h-dvh overflow-x-hidden antialiased bg-background`}
       >
-        {children}
+        <main className="min-w-0">{children}</main>
       </body>
     </html>
   );

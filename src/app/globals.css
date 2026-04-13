@@ -1,6 +1,21 @@
 @import "tailwindcss";
 @import "@heroui/styles";
 
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  img,
+  video {
+    max-width: 100%;
+  }
+}
+
 /*
  * HeroUI Theme Customization
  * Add this to your global.css after importing @heroui/styles

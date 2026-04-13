@@ -17,7 +17,7 @@ const ProfileImage = ({ src }) => {
   return (
     <>
       <Avatar
-        className="size-24 cursor-pointer"
+        className="size-20 cursor-pointer sm:size-24"
         onClick={() => setIsOpen(true)}
       >
         <Avatar.Image alt="Profile Image" src={src} />
