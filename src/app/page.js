@@ -241,7 +241,7 @@ const OpenSourceCard = ({ project }) => {
             </div>
           </div>
         </div>
-        <p className="text-[15px] leading-relaxed text-gray-500 sm:text-sm">
+        <p className="leading-relaxed text-gray-500 text-sm">
           {project.description}
         </p>
         <div className="flex flex-wrap gap-2 mt-1">
@@ -486,8 +486,8 @@ const experiences = [
           <>
             GPS tracking & fleet management app for Android
             <strong> (Kotlin/Compose)</strong> and iOS
-            <strong> (SwiftUI)</strong> with offline support, MVVM, Google Maps,
-            push notifications, and payments.
+            <strong> (SwiftUI)</strong> with MVVM, Google Maps,
+            FCM, and payments.
           </>
         ),
         playstore:
@@ -502,8 +502,7 @@ const experiences = [
           <>
             EV charging app for Android and iOS built with{" "}
             <strong>Flutter</strong>, allowing users to remotely start and stop
-            vehicle charging, integrated with <strong>IoT</strong> and payment
-            gateway support.
+            vehicle charging.
           </>
         ),
         playstore:
@@ -532,8 +531,7 @@ const experiences = [
         description: (
           <>
             The app is designed to enhance your purchasing experience by
-            providing a unique way to earn and redeem rewards. This is a cross
-            platform application built with
+            providing a unique way to earn and redeem rewards. The app is built with
             <strong> Flutter.</strong>
           </>
         ),
@@ -547,8 +545,7 @@ const experiences = [
         description: (
           <>
             This is a business management app that centralizes lead tracking,
-            sales, tasks, and workflow in one platform. This is a cross platform
-            application built with
+            sales, tasks, and workflow in one platform. The app is built with
             <strong> Flutter.</strong>
           </>
         ),
@@ -612,9 +609,7 @@ const experiences = [
         description: (
           <>
             A telemedicine app with video/audio consultation. Built with{" "}
-            <strong>Kotlin (Android)</strong> and <strong>Flutter (iOS)</strong>
-            , featuring real-time communication via <strong>Agora SDK</strong>{" "}
-            and <strong>Stripe</strong> payment integration.
+            <strong>Kotlin (Android)</strong> and <strong>Flutter (iOS)</strong>.
           </>
         ),
         playstore: null,

@@ -88,7 +88,7 @@ const Project = ({ item }) => {
       <div className="flex flex-1 flex-col gap-3">
         <Card.Header className="min-w-0 gap-1">
           <Card.Title className="pr-2 text-base sm:pr-8 sm:text-lg">{item.title}</Card.Title>
-          <Card.Description className="text-[15px] leading-relaxed text-gray-500 sm:text-base">
+          <Card.Description className="leading-relaxed text-gray-500">
             {item.description}
           </Card.Description>
         </Card.Header>
