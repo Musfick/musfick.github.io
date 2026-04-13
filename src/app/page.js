@@ -25,7 +25,7 @@ import Experience from "./experience";
 
 const Home = () => {
   return (
-    <div className="flex flex-col mx-auto max-w-3xl gap-16 sm:gap-20 my-16 sm:my-24 px-4 sm:px-0">
+    <div className="flex flex-col mx-auto max-w-3xl gap-12 sm:gap-16 md:gap-20 my-8 sm:my-16 md:my-24 px-4 sm:px-6 md:px-8">
       <div className="flex flex-col gap-6 sm:gap-8">
         <ProfileImage src="https://avatars.githubusercontent.com/u/43013838?v=4" />
         <div>
@@ -51,7 +51,6 @@ const Home = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 key={e.link}
-                className="text-sm sm:text-base"
               >
                 {e.title}
                 <Link.Icon />
@@ -66,7 +65,7 @@ const Home = () => {
           {skills.map((e) => {
             return (
               <Chip className="bg-white" key={e} size="lg">
-                <span className="text-xs sm:text-sm">{e}</span>
+                {e}
               </Chip>
             );
           })}
@@ -96,7 +95,7 @@ const Home = () => {
       </div>
       <div className="flex flex-col gap-6 sm:gap-8">
         <h1 className="text-lg sm:text-xl font-semibold">Beyond Coding</h1>
-        <div className="grid grid-cols-12 gap-6 sm:gap-8">
+        <div className="grid grid-cols-12 gap-4 sm:gap-6 md:gap-8">
           {hobbies.map((hobby) => {
             return <HobbyCard key={hobby.title} hobby={hobby} />;
           })}
@@ -123,7 +122,7 @@ const Education = ({ item }) => {
         <div>
           <h3 className="text-base sm:text-lg font-semibold">{item.title}</h3>
           <p className="text-xs sm:text-sm text-gray-500 leading-relaxed mt-1 mb-2">{item.subtitle}</p>
-          <Chip className="bg-black/4"><span className="text-xs">{item.body}</span></Chip>
+          <Chip className="bg-black/4">{item.body}</Chip>
         </div>
       </div>
     </Card>
@@ -153,15 +152,15 @@ const HobbyCard = ({ hobby }) => {
         className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[25%] border-t border-white/15 bg-gradient-to-t from-black/88 via-black/48 to-transparent shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)] backdrop-blur-2xl backdrop-saturate-125"
         aria-hidden
       />
-      <Card.Header className="relative z-10 p-3 sm:p-4">
-        <Card.Title className="text-[10px] sm:text-xs font-semibold uppercase tracking-wide text-white/90">
+      <Card.Header className="relative z-10">
+        <Card.Title className="text-xs font-semibold uppercase tracking-wide text-white/90">
           {eyebrow}
         </Card.Title>
         <Card.Description className="text-xs sm:text-sm font-medium leading-5 text-white/75">
           {hobby.title}
         </Card.Description>
       </Card.Header>
-      <Card.Footer className="relative z-10 mt-auto p-3 sm:p-4">
+      <Card.Footer className="relative z-10 mt-auto">
         <p className="line-clamp-2 text-xs sm:text-sm font-normal text-white leading-relaxed">
           {hobby.description}
         </p>
@@ -192,9 +191,8 @@ const HobbyCard = ({ hobby }) => {
               variant="tertiary"
               key="hobby-lightbox-close"
               onClick={() => setIsOpen(false)}
-              className="!w-8 !h-8 sm:!w-10 sm:!h-10"
             >
-              <Xmark className="h-4 w-4 sm:h-5 sm:w-5" />
+              <Xmark />
             </Button>
           ),
         }}
@@ -207,32 +205,32 @@ const OpenSourceCard = ({ project }) => {
   return (
     <Card className="p-4 sm:p-5">
       <div className="flex flex-col gap-3">
-        <div className="flex flex-row items-start justify-between gap-3">
+        <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-0">
           <div className="flex flex-row items-center gap-3">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-black flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-bold text-xs sm:text-sm">
+            <div className="w-10 h-10 rounded-lg bg-black flex items-center justify-center flex-shrink-0">
+              <span className="text-white font-bold text-sm">
                 {project.name.charAt(0)}
               </span>
             </div>
-            <div className="min-w-0">
+            <div>
               <Link
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm sm:text-lg font-semibold transition-colors break-words"
+                className="text-base sm:text-lg font-semibold transition-colors"
               >
                 {project.name}
               </Link>
               <p className="text-xs sm:text-sm text-gray-400">{project.language}</p>
             </div>
           </div>
-          <div className="flex flex-row items-center gap-3 sm:gap-4 flex-shrink-0">
+          <div className="flex flex-row items-center gap-4 ml-13 sm:ml-0">
             <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-400">
-              <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <Star className="h-4 w-4" />
               <span>{project.stars}</span>
             </div>
             <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-400">
-              <CodeFork className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <CodeFork className="h-4 w-4" />
               <span>{project.forks}</span>
             </div>
           </div>
@@ -240,10 +238,10 @@ const OpenSourceCard = ({ project }) => {
         <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
           {project.description}
         </p>
-        <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-1">
+        <div className="flex flex-wrap gap-2 mt-1">
           {project.tags.map((tag) => (
             <Chip key={tag} size="sm" className="bg-white/10">
-              <span className="text-[10px] sm:text-xs">{tag}</span>
+              {tag}
             </Chip>
           ))}
         </div>
@@ -307,20 +305,20 @@ const ContactSection = () => {
     <Card className="p-4 sm:p-6">
       <div className="flex flex-col gap-4 sm:gap-6">
         <div className="flex flex-col gap-2">
-          <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
+          <p className="text-sm sm:text-base text-gray-500 leading-relaxed">
           I'm currently focused on my ongoing work, but I'll consider interesting opportunities.
           Feel free to reach out if you have a question or just want to say hi!
           </p>
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:gap-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Input
               name="name"
               placeholder="Your Name"
               value={formData.name}
               onChange={handleChange}
               required
-              className="bg-gray-100 shadow-none text-sm"
+              className="bg-gray-100 shadow-none"
             />
             <Input
               name="email"
@@ -329,7 +327,7 @@ const ContactSection = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="bg-gray-100 shadow-none text-sm"
+              className="bg-gray-100 shadow-none"
             />
           </div>
           <TextArea
@@ -338,13 +336,13 @@ const ContactSection = () => {
             value={formData.message}
             onChange={handleChange}
             required
-            className="bg-gray-100 shadow-none text-sm min-h-[100px] sm:min-h-[120px]"
+              className="bg-gray-100 shadow-none"
           />
           <div className="mt-1"></div>
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-black text-white text-sm sm:text-base w-full sm:w-auto"
+            className="bg-black text-white w-full sm:w-auto"
           >
             {isSubmitting ? (
               "Sending..."
@@ -366,11 +364,11 @@ const ContactSection = () => {
             Something went wrong. Please try again or email me directly.
           </p>
         )}
-        <div className="flex flex-row flex-wrap items-center gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-white/10">
-          <Envelope className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400 flex-shrink-0" />
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 pt-4 border-t border-white/10">
+          <Envelope className="h-5 w-5 text-gray-400" />
           <Link
             href="mailto:musfick@example.com"
-            className="text-gray-400 transition-colors text-sm break-all"
+            className="text-sm sm:text-base text-gray-400 transition-colors break-all"
           >
             musfick.jamil.1@gmail.com
           </Link>
@@ -479,7 +477,7 @@ const experiences = [
         title: "Track My Vehicle",
         description: (
           <>
-            GPS tracking & fleet management app for Android
+            GPS tracking app for Android
             <strong> (Kotlin/Compose)</strong> and iOS
             <strong> (SwiftUI)</strong> with offline support, MVVM, Google Maps,
             push notifications, and payments.
@@ -527,8 +525,7 @@ const experiences = [
         description: (
           <>
             The app is designed to enhance your purchasing experience by
-            providing a unique way to earn and redeem rewards. This is a cross
-            platform application built with
+            providing a way to earn and redeem rewards. The application is built with
             <strong> Flutter.</strong>
           </>
         ),
@@ -606,7 +603,7 @@ const experiences = [
         title: "Advisofast",
         description: (
           <>
-            A telemedicine app with video/audio consultation. Built with{" "}
+            A app with video/audio consultation. Built with{" "}
             <strong>Kotlin (Android)</strong> and <strong>Flutter (iOS)</strong>
             , featuring real-time communication via <strong>Agora SDK</strong>{" "}
             and <strong>Stripe</strong> payment integration.
